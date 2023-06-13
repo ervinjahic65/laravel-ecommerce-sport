@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mobile Shop - Početna</title>
+    <title>Jersey - Shop</title>
 
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -25,7 +25,7 @@
         }
 
         .hero-img {
-            width: 50px;
+            width: 60px;
         }
         #slider5a .slider-track-high, #slider5c .slider-track-high {
             background: green;
@@ -80,7 +80,7 @@
 
     <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
         <a class="navbar-brand ml-2 font-weight-bold" href="#">
-            <img class="hero-img" src="{{ url('images/mobile-shop.jpg') }}"/>
+            <img class="hero-img" src="{{ url('images/logo.jpg') }}"/>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -133,13 +133,13 @@
                 @else
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('login')}}">
-                            <span id="burgundy"></span><span id="blue">Uloguj se</span>
+                            <span id="burgundy"></span><span id="blue">Log in</span>
                             <i class="fa fa-sign-in" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('signup')}}">
-                            <span id="burgundy"></span><span id="blue">Registruj se</span>
+                            <span id="burgundy"></span><span id="blue">Register</span>
                             <i class="fa fa-book" aria-hidden="true"></i>
                         </a>
                     </li>
@@ -150,7 +150,8 @@
 
     @if(!session('userid'))
     <div class="before-login" style="text-align: center;">
-        <img class="hero-img-main" src="{{ url('images/mobile-shop.jpg') }}"/>
+        <img class="hero-img-main" src="{{ url('images/jersey.jpg') }}"/>
+        <p>Jersey - Shop</p>
     </div>
     @endif
 
