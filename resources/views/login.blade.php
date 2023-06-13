@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Ulogujte se</title>
+<title>Login</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -38,23 +38,25 @@
 <div class="login-form">
     <form action="{{ url('loginAction')}}" method="post">
         {{ csrf_field() }}
-        <h2 class="text-center">Ulogujte se</h2>
+        <h2 class="text-center">Login</h2>
         <div class="form-group">
-            <input name="username" type="text" class="form-control" placeholder="Email ili telefon" required="required">
+            <input name="username" type="text" class="form-control" placeholder="Email" required="required">
         </div>
         <div class="form-group">
-            <input name='password' type="password" class="form-control" placeholder="Lozinka" required="required">
+            <input name='password' type="password" class="form-control" placeholder="Password" required="required">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Uloguj se</button>
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
         </div>
         @if(session('status'))
             <center style="color:red">{{ session('status') }}</center>
         @endif
     </form>
 
-    <p class="text-center"><a href="{{ url('signup')}}">
-        Napravi novi račun</a>
+    <p class="text-center">
+        <a href="{{ url('signup')}}">
+            Create new account
+        </a>
         <i class="fa fa-arrow-right" aria-hidden="true"></i>
     </p>
 </div>

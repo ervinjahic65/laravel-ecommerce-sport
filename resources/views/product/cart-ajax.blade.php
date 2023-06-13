@@ -7,8 +7,8 @@
         <div class="product-details">
             <div class="product-title"><b style="color:red">{{ ucfirst($row->name) }}</b></div>
             <p class="product-description"> {{ ucfirst($row->description)}}</p>
-            <p class="product-description"><b>BOJA :</b> {{ ucfirst($row->color)}}</p>
-            <p class="product-description"><b>VELIČINA :</b>  {{ ucfirst($row->size)}}</p>
+            <p class="product-description"><b>COLOR :</b> {{ ucfirst($row->color)}}</p>
+            <p class="product-description"><b>SIZE :</b>  {{ ucfirst($row->size)}}</p>
             </div>
             <div class="product-price">{{$row->price}}</div>
             <div class="product-quantity">
@@ -16,7 +16,7 @@
             </div>
             <div class="product-removal">
             <button style="cursor: pointer;" class="remove-product" data-id="{{ $row->id}}">
-                Ukloni
+                Remove
             </button>
         </div>
         <div class="product-line-price"> {{ ($row->quantity * $row->price)}}</div>
@@ -40,7 +40,7 @@
                 data: dataString,
                 success: function(data){
                     if(data != "success"){
-                        alert('Ažuriranje količine nije uspjelo!');
+                        alert('Not success!');
                     }
                 }
 
@@ -61,9 +61,9 @@
                 success: function(data){
                     console.log(data);
                     if(data == "success"){
-                       alert('Uspješno uklonjeno');
+                       alert('Successfully removed');
                     } else {
-                        alert('Greška');
+                        alert('Error');
                     }
                 }
             });

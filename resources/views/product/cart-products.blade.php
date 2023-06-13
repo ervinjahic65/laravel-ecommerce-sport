@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Stavke u košarici</title>
+    <title>Shopping cart</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -250,18 +250,18 @@ label {
 
 <!------ Uključite gore navedeno u oznaku HEAD ---------->
 <br>
-<a href="{{url('products')}}">Proizvodi</a> | <a href="">Stavke u košarici</a>
+<a href="{{url('products')}}">Products</a> | <a href="">Items in shopping cart</a>
 <br><br>
 
     <div class="shopping-cart">
 
         <div class="column-labels">
-            <label class="product-image">Slike</label>
-            <label class="product-details">Proizvodi</label>
-            <label class="product-price">Cijena</label>
-            <label class="product-quantity">Količina</label>
-            <label class="product-removal">Ukloni</label>
-            <label class="product-line-price">Suma</label>
+            <label class="product-image">Images</label>
+            <label class="product-details">Products</label>
+            <label class="product-price">Price</label>
+            <label class="product-quantity">Quantity</label>
+            <label class="product-removal">Remove</label>
+            <label class="product-line-price">Sum</label>
         </div>
 
 
@@ -272,15 +272,15 @@ label {
 
         <div class="totals" style="float:right">
 
-            <label>Ukupno</label>
+            <label>Total</label>
             <div class="totals-value" id="cart-total"></div>
             </div>
         </div>
 
         <a href="{{url('products')}}" class="btn btn-sm btn-primary">
-          Dodati još
+          Add more
         </a> &nbsp;
-        <button style="cursor: pointer" class="checkout">Naruči</button>
+        <button style="cursor: pointer" class="checkout">Order</button>
 
 
     </div>
@@ -290,18 +290,18 @@ label {
 
             <!-- Modal Header -->
             <div class="modal-header">
-              <h4 class="modal-title">Uspješno</h4>
+              <h4 class="modal-title">Successfully</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-                Narudžba spremna
+                Order ready
             </div>
 
             <!-- Modal footer -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Zatvori</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
 
           </div>
@@ -323,7 +323,7 @@ $(document).ready(function() {
         });
     }
     $('.checkout').click(function(){
-        alert('Narudžba spremljena!')
+        alert('Order ready!')
         window.history.back();
     });
 

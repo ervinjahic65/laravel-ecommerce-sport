@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mobile Shop - Početna</title>
+    <title>Jersey - Shop</title>
 
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -25,7 +25,11 @@
         }
 
         .hero-img {
-            width: 50px;
+            width: 60px;
+        }
+
+        .hero-text {
+            color: #007bff;
         }
         #slider5a .slider-track-high, #slider5c .slider-track-high {
             background: green;
@@ -80,7 +84,7 @@
 
     <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
         <a class="navbar-brand ml-2 font-weight-bold" href="#">
-            <img class="hero-img" src="{{ url('images/mobile-shop.jpg') }}"/>
+            <img class="hero-img" src="{{ url('images/hero-img.png') }}"/>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -89,7 +93,7 @@
             <ul class="navbar-nav ml-auto">
                 @if(session('userid'))
                 <li class="nav-item rounded bg-light search-nav-item">
-                    <input type="text" id="search" class="bg-light searchProd form-control" placeholder="Pretraži proizvode ...">
+                    <input type="text" id="search" class="bg-light searchProd form-control" placeholder="Search ...">
                 </li>
                 @endif
                 @if(session('userid'))
@@ -133,13 +137,13 @@
                 @else
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('login')}}">
-                            <span id="burgundy"></span><span id="blue">Uloguj se</span>
+                            <span id="burgundy"></span><span id="blue">Log in</span>
                             <i class="fa fa-sign-in" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('signup')}}">
-                            <span id="burgundy"></span><span id="blue">Registruj se</span>
+                            <span id="burgundy"></span><span id="blue">Register</span>
                             <i class="fa fa-book" aria-hidden="true"></i>
                         </a>
                     </li>
@@ -150,7 +154,7 @@
 
     @if(!session('userid'))
     <div class="before-login" style="text-align: center;">
-        <img class="hero-img-main" src="{{ url('images/mobile-shop.jpg') }}"/>
+        <img class="hero-img-main" src="{{ url('images/hero-img.png') }}"/>
     </div>
     @endif
 
@@ -158,10 +162,10 @@
     <div class="main-container">
         <section id="sidebar">
 
-            <p> Početna | <b>Proizvodi</b></p>
+            <p> Home | <b> Products </b></p>
 
             <div class="border-bottom pb-2 ml-2">
-                <h4 id="burgundy">Filteri
+                <h4 id="burgundy">Filters
                     <i class="fa fa-filter" aria-hidden="true"></i>
                 </h4>
                 {{-- <div class="filter">
@@ -170,12 +174,12 @@
             </div>
 
             <div class="py-2 border-bottom ml-3 max-min-values">
-                <h5 id="burgundy">Po cijeni</h5>
+                <h5 id="burgundy">Price</h5>
                 <b id="min_value">KM: {{ $price['min'] }}</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="{{ $price['min'] }}" data-slider-max="{{ $price['max'] }}" data-slider-step="5" data-slider-value="[{{ $price['min']}},{{ $price['max']}}]"/> <b id="max_value">KM: {{$price['max']}}</b>
             </div>
 
             <div class="py-2 ml-3 pick-color">
-                <h5 id="burgundy">Po boji</h5>
+                <h5 id="burgundy">Color</h5>
                 @foreach($colors as  $r)
                     <div class="form-group"> <input class="color_check" type="checkbox" value="{{$r->color }}" id="25off"> <label for="25">{{ ucfirst($r->color) }}</label> </div>
                 @endforeach
@@ -245,7 +249,7 @@
 
                             $("#ajax_result").html(data);
                         } else {
-                            $("#ajax_result").html("<p>Nema podataka</p>");
+                            $("#ajax_result").html("<p>No data</p>");
                         }
                     }
                 });

@@ -202,7 +202,7 @@ class ProductController extends Controller
 
         if(isset($insertResult)){
 
-            return redirect('products')->with('status','Proizvod je uspješno ažuriran!');
+            return redirect('products')->with('status', 'The product has been updated successfully!');
 
         } else {
             return redirect()->back();

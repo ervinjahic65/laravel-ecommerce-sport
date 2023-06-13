@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
-<title>Dodajte korisnike</title>
+<title>Add users</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -89,13 +89,13 @@ body {
         @csrf
         @if(isset($user))
 
-            <h4 class="text-center">Uredi korisnika</h4>
+            <h4 class="text-center">Edit user</h4>
         @else
-            <h4 class="text-center">Dodaj korisnika</h4>
+            <h4 class="text-center">Add user</h4>
         @endif
 		<hr>
         <div class="form-group">
-        	<input type="text" class="form-control" name="name" value="{{ isset($user)?$user->name:old('name') }}" placeholder="Ime" >
+        	<input type="text" class="form-control" name="name" value="{{ isset($user)?$user->name:old('name') }}" placeholder="Name" >
             @if($errors->has('name'))
                 <p style="color:red">{{ $errors->first('name')}}</p>
             @endif
@@ -109,13 +109,13 @@ body {
 
 
         <div class="form-group">
-            <input type="password" class="form-control" autocomplete="off" name="password" value="{{ old('password') }}" placeholder="Lozinka">
+            <input type="password" class="form-control" autocomplete="off" name="password" value="{{ old('password') }}" placeholder="Password">
             @if($errors->has('password'))
                 <p style="color:red">{{ $errors->first('password')}}</p>
             @endif
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" name="confirm_password" placeholder="Potvrdi lozinku">
+            <input type="password" class="form-control" name="confirm_password" placeholder="Confirm password">
             @if($errors->has('confirm_password'))
                 <p style="color:red">{{ $errors->first('confirm_password')}}</p>
             @endif
@@ -125,11 +125,11 @@ body {
 
 
 		<div class="form-group">
-            <a href="{{ url('products')}}" class="btn btn-success" style="color:red">Nazad</a>
+            <a href="{{ url('products')}}" class="btn btn-success" style="color:red">Back</a>
             @if(isset($user))
-                <button type="submit" class="btn btn-primary submit">Ažuriraj</button>
+                <button type="submit" class="btn btn-primary submit">Update</button>
             @else
-                <button type="submit" class="btn btn-primary submit">Dodaj</button>
+                <button type="submit" class="btn btn-primary submit">Add</button>
             @endif
         </div>
     </form>
