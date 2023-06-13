@@ -27,6 +27,10 @@
         .hero-img {
             width: 60px;
         }
+
+        .hero-text {
+            color: #007bff;
+        }
         #slider5a .slider-track-high, #slider5c .slider-track-high {
             background: green;
         }
@@ -80,7 +84,7 @@
 
     <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
         <a class="navbar-brand ml-2 font-weight-bold" href="#">
-            <img class="hero-img" src="{{ url('images/logo.jpg') }}"/>
+            <img class="hero-img" src="{{ url('images/hero-img.png') }}"/>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -150,8 +154,7 @@
 
     @if(!session('userid'))
     <div class="before-login" style="text-align: center;">
-        <img class="hero-img-main" src="{{ url('images/jersey.jpg') }}"/>
-        <p>Jersey - Shop</p>
+        <img class="hero-img-main" src="{{ url('images/hero-img.png') }}"/>
     </div>
     @endif
 
