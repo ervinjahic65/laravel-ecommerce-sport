@@ -30,7 +30,7 @@
                         <div class="text-muted">KM {{ $row->price }}</div>
                     </div>
                     <div class="d-flex flex-row">
-                        <p>Veličina: </p>&nbsp;
+                        <p>Size: </p>&nbsp;
                         @php $sizes = explode(',',$row->sizes) @endphp
                         @foreach($sizes as $r)
                             <label class="radio"> <input type="radio" name="size" data-id="{{$row->id}}" id="size_value" size-id="{{ $r }}" value="{{ $r }}"> <span>{{ $r }}</span> </label>&nbsp;
@@ -39,32 +39,32 @@
 
                     </div>
                     <div class="d-flex flex-row">
-                        <p>Boja: </p>&nbsp;
+                        <p>Color: </p>&nbsp;
                         @php $colors = DB::table('colors')->where('product_id',$row->id)->get(); @endphp
                         @foreach($colors as $r)
                            <label class="radio"> <input type="radio" name="color" id="color_value" data-id="{{$row->id}}"  value="{{ strtolower($r->color) }}"> <span>{{ ucfirst($r->color) }}</span> </label>&nbsp;
                         @endforeach
                     </div>
-                    <a href="{{ url('product-view',$row->id)}}"><button class="btn w-100 btn-primary">Pregled</button></a>&nbsp;
-                    <button class="btn w-100 btn-success add_cart" id="add_cart" data-id="{{$row->id}}">Dodajte u košaricu</button>
+                    <a href="{{ url('product-view',$row->id)}}"><button class="btn w-100 btn-primary">View</button></a>&nbsp;
+                    <button class="btn w-100 btn-success add_cart" id="add_cart" data-id="{{$row->id}}">Add to shopping cart</button>
 
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
                           <div class="modal-content">
 
                                 <div class="modal-header">
-                                <h4 class="modal-title">Uspješno</h4>
+                                <h4 class="modal-title">Successfully</h4>
 
                                 </div>
 
                                 <!-- Modal body -->
                                 <div class="modal-body">
-                                    Proizvod je uspješno dodan u korpu!
+                                    Product successfully added!
                                 </div>
 
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Zatvori</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 </div>
 
                             </div>
@@ -76,21 +76,21 @@
                             <div class="modal-content p-5">
 
                                 <div class="modal-body">
-                                    <h3 class="mb-5 title">Molim ulogujte se</h3>
+                                    <h3 class="mb-5 title">Please login</h3>
                                     <hr>
                                     <div class="form-group">
                                         <input type="text" id="email" class="form-control" placeholder="Email *" required >
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" id="password" class="form-control" placeholder="lozinka *" required >
+                                        <input type="text" id="password" class="form-control" placeholder="Password *" required >
                                     </div>
                                     <hr>
                                     <div class="form-group d-flex justify-content-center">
                                         <button class="btn btn-danger" data-dismiss="modal">
-                                            Poništi
+                                            Cancel
                                         </button> &nbsp;
                                         <button id="login-submit" class="btn btn-success">
-                                            Ulogujte se
+                                            Login
                                         </button>
 
                                     </div>
@@ -120,7 +120,7 @@
             var size = $('input[name="size"][data-id='+product_id+']:checked').val();
 
             if(!size || !color) {
-                alert("Molimo odaberite veličinu i boju");
+                alert("Please pick up color and size");
                 return false;
             }
 

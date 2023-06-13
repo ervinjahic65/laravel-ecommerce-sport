@@ -93,7 +93,7 @@
             <ul class="navbar-nav ml-auto">
                 @if(session('userid'))
                 <li class="nav-item rounded bg-light search-nav-item">
-                    <input type="text" id="search" class="bg-light searchProd form-control" placeholder="Pretraži proizvode ...">
+                    <input type="text" id="search" class="bg-light searchProd form-control" placeholder="Search ...">
                 </li>
                 @endif
                 @if(session('userid'))
@@ -162,10 +162,10 @@
     <div class="main-container">
         <section id="sidebar">
 
-            <p> Početna | <b>Proizvodi</b></p>
+            <p> Home | <b> Products </b></p>
 
             <div class="border-bottom pb-2 ml-2">
-                <h4 id="burgundy">Filteri
+                <h4 id="burgundy">Filters
                     <i class="fa fa-filter" aria-hidden="true"></i>
                 </h4>
                 {{-- <div class="filter">
@@ -174,12 +174,12 @@
             </div>
 
             <div class="py-2 border-bottom ml-3 max-min-values">
-                <h5 id="burgundy">Po cijeni</h5>
+                <h5 id="burgundy">Price</h5>
                 <b id="min_value">KM: {{ $price['min'] }}</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="{{ $price['min'] }}" data-slider-max="{{ $price['max'] }}" data-slider-step="5" data-slider-value="[{{ $price['min']}},{{ $price['max']}}]"/> <b id="max_value">KM: {{$price['max']}}</b>
             </div>
 
             <div class="py-2 ml-3 pick-color">
-                <h5 id="burgundy">Po boji</h5>
+                <h5 id="burgundy">Color</h5>
                 @foreach($colors as  $r)
                     <div class="form-group"> <input class="color_check" type="checkbox" value="{{$r->color }}" id="25off"> <label for="25">{{ ucfirst($r->color) }}</label> </div>
                 @endforeach
@@ -249,7 +249,7 @@
 
                             $("#ajax_result").html(data);
                         } else {
-                            $("#ajax_result").html("<p>Nema podataka</p>");
+                            $("#ajax_result").html("<p>No data</p>");
                         }
                     }
                 });

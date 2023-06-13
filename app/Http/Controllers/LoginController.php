@@ -46,7 +46,7 @@ class LoginController extends Controller
 
             $request->session()->put('is_admin', $is_admin);
 
-            $request->session()->flash('status', "Uspješno ste se ulogovali");
+            $request->session()->flash('status', "You have successfully logged in");
 
             if(session('product_id')){
 
@@ -55,11 +55,11 @@ class LoginController extends Controller
 
                 $resultWish = DB::table('wishlist')->insert($prod);
                 if($resultWish){
-                    $request->session()->flash('status', "Uspješno dodano!");
+                    $request->session()->flash('status', "Added successfully!");
                     return redirect('products');
                     Session::flush('product_id');
                 } else {
-                    $request->session()->flash('status', "Greška!");
+                    $request->session()->flash('status', "Error!");
                     return redirect('products');
                 }
 
@@ -67,7 +67,7 @@ class LoginController extends Controller
                 return redirect('products');
             }
         } else {
-            $request->session()->flash('status', "Nepoznat korisnik");
+            $request->session()->flash('status', "Unknown user");
             return redirect('/login');
         }
     }

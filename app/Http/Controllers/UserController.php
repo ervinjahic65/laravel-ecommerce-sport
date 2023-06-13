@@ -57,9 +57,9 @@ class UserController extends Controller
         $insertResult = DB::table('users')->insert($data);
 
         if($insertResult){
-            return redirect('/login')->with('status', 'Korisnik kreiran!');
+            return redirect('/login')->with('status', 'User created!');
         } else{
-            return redirect('signup')->with('status', 'Greška, pokušajte ponovo');;
+            return redirect('signup')->with('status', 'Error, try again!');
         }
     }
 
@@ -108,9 +108,9 @@ class UserController extends Controller
     {
         $result = UserModel::deleteUser($id);
         if($result){
-            return redirect('users')->with('status', 'Korisnik ažuriran!');
+            return redirect('users')->with('status', 'User updated!');
         } else{
-            return view('edit',$id)->with('status', 'Greška, pokušajte ponovo');;
+            return view('edit',$id)->with('status', 'Error, try again');
         }
     }
 }

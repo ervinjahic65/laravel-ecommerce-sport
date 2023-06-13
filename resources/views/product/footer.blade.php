@@ -32,7 +32,7 @@
 
                         $("#ajax_result").html(data);
                     } else {
-                        $("#ajax_result").html("<p>Nema podataka</p>");
+                        $("#ajax_result").html("<p>No data</p>");
                     }
                 }
             });
@@ -69,12 +69,12 @@
             var size = $('input[name="size"]:checked').val();
             if(!size)
             {
-                alert("Molimo izaberite veličinu");
+                alert("Please pick up size");
                 return false;
             }
             if(!color)
             {
-                alert("Molimo izaberite boju");
+                alert("Please pick up color");
                 return false;
             }
             var dataString = 'product_id=' + product_id + '&color=' + color + '&size=' + size;
@@ -88,7 +88,7 @@
                     $("#myModal").modal("toggle");
                     cart_count();
                 } else {
-                    alert("Greška! Pokušajte ponovo.");
+                    alert("Error!");
                     cart_count();
                 }
             }
@@ -108,10 +108,10 @@
                 success:function(data){
 
                     if(data == "success"){
-                        alert("Uspješno dodano");
+                        alert("Successfully added");
                         ajax_call();
                     } else {
-                        alert("Greška!");
+                        alert("Error!");
                         ajax_call();
                     }
                 }
@@ -132,10 +132,10 @@
                 success:function(data){
 
                     if(data == "success"){
-                        alert("Uspješno izbrisano!");
+                        alert("Successfully delted!");
                         location.reload();
                     } else {
-                        alert("Greška!");
+                        alert("Error!");
                         location.reload();
                     }
                 }

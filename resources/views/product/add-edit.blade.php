@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
-<title>Dodavanje proizvoda</title>
+<title>Add products</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -83,7 +83,7 @@ body {
 <div class="signup-form">
     <form action="{{ isset($product)? url('update-product',$product->id) : url('store-product') }}" method="POST" enctype="multipart/form-data">
 
-        <h4 class="text-center">Dodajte novi proizvod</h4>
+        <h4 class="text-center">Add new product</h4>
         {{ csrf_field() }}
 		@if(session('status'))
             <center style="color:green">{{ session('status') }}</center>
@@ -91,31 +91,31 @@ body {
 
 		<hr>
         <div class="form-group">
-        	<label for=''>Ime produkta </label><input type="text" class="form-control" name="name" value="{{ isset($product) ? $product->name : old('name')}}" placeholder="Ime produkta" >
+        	<label for=''>Name</label><input type="text" class="form-control" name="name" value="{{ isset($product) ? $product->name : old('name')}}" placeholder="Name" >
         </div>
         <div class="form-group">
-        	<label for=''>Cijena produkta </label><input type="text" class="form-control" name="price" value="{{ isset($product) ? $product->price : old('price')}}" placeholder="Cijena produkta" >
+        	<label for=''>Price</label><input type="text" class="form-control" name="price" value="{{ isset($product) ? $product->price : old('price')}}" placeholder="Price" >
         </div>
         <div class="form-group">
-        	<label for=''>Prodajna cijena </label><input type="text" class="form-control" name="discount_price" value="{{ isset($product) ? $product->discount_price : old('discount_price')}}" placeholder="Prodajna cijena" >
+        	<label for=''>Doscount price</label><input type="text" class="form-control" name="discount_price" value="{{ isset($product) ? $product->discount_price : old('discount_price')}}" placeholder="Discount price" >
         </div>
         <div class="form-group">
-        	<label for=''>Količina </label><input type="text" class="form-control" name="quantity" value="{{ isset($product) ? $product->quantity : old('quantity')}}" placeholder="Količina" >
+        	<label for=''>Quantity </label><input type="text" class="form-control" name="quantity" value="{{ isset($product) ? $product->quantity : old('quantity')}}" placeholder="Quantity" >
         </div>
 
         <div class="form-group field_wrapper">
             <div>
 
                 @if(isset($product))
-                    <label for=''>Boja produkta </label><br>
+                    <label for=''>Color</label><br>
                     @php $r = explode(',',$product->colors) @endphp
                     @foreach($r as $color)
                         <input type="text" name="color[]" value="{{ $color}}"/>
                     @endforeach
                 @else
-                    <label for=''>Boja produkta </label><br>
+                    <label for=''>Color</label><br>
                     <input placeholder="Product Color" type="text" name="color[]"/>
-                    <a href="javascript:void(0);" class="add_button" title="Dodajte"><img src="{{ url('assets/add-icon.png') }}"/></a>
+                    <a href="javascript:void(0);" class="add_button" title="Add"><img src="{{ url('assets/add-icon.png') }}"/></a>
                 @endif
             </div>
         </div>
@@ -124,13 +124,13 @@ body {
             <div>
 
                 @if(isset($product))
-                    <label for=''>Veličina </label><br>
+                    <label for=''>Size </label><br>
                     @php $r = explode(',',$product->sizes) @endphp
                     @foreach($r as $size)
                         <input type="text" name="sizes[]" value="{{ $size}}"/>
                     @endforeach
                 @else
-                <label for=''>Veličina </label><br> <input placeholder="Veličina" type="text" name="sizes[]"/>
+                <label for=''>Size</label><br> <input placeholder="Size" type="text" name="sizes[]"/>
                 <a href="javascript:void(0);" class="add_button2" title="Add field"><img src="{{ url('assets/add-icon.png') }}"/></a>
                 @endif
             </div>
@@ -138,17 +138,17 @@ body {
 
 
         <div class="form-group">
-        	<label for='quantity'>Slika</label><input type="file" class="form-control" name="prod_img" id="quantity" value="" placeholder="Izaberite sliku">
+        	<label for='quantity'>Image</label><input type="file" class="form-control" name="prod_img" id="quantity" value="" placeholder="Select image">
         </div>
 
         <div class="form-group">
-        	<textarea class="form-control" name="description" placeholder="Opis">{{ isset($product) ? $product->description : old('description')}}</textarea>
+        	<textarea class="form-control" name="description" placeholder="Description">{{ isset($product) ? $product->description : old('description')}}</textarea>
         </div>
 
 		<div class="form-group">
-            <center>
-            <a href="{{ url('products')}}" class="btn btn-success" style="color:rgb(22, 21, 21)">Nazad</a>
-            <button type="submit" class="btn btn-primary submit">{{ isset($product)? 'Ažuriraj' : 'Dodaj' }}</button>
+        <center>
+            <a href="{{ url('products')}}" class="btn btn-success" style="color:rgb(22, 21, 21)">Back</a>
+            <button type="submit" class="btn btn-primary submit">{{ isset($product)? 'Update' : 'Add' }}</button>
         </center>
         </div>
     </form>
@@ -173,7 +173,7 @@ body {
 
         var addButton2 = $('.add_button2');
         var wrapper2 = $('.field_wrapper2');
-        var fieldHTML2 = '<div><input type="text" name="sizes[]" placeholder="Velićina"/><a href="javascript:void(0);" class="remove_button2"><img src="{{ url("assets/remove-icon.png") }}"/></a></div>'; //New input field html
+        var fieldHTML2 = '<div><input type="text" name="sizes[]" placeholder="Size"/><a href="javascript:void(0);" class="remove_button2"><img src="{{ url("assets/remove-icon.png") }}"/></a></div>'; //New input field html
 
         $(addButton2).click(function(){
             $(wrapper2).append(fieldHTML2);
