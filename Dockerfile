@@ -8,6 +8,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 WORKDIR /app
 COPY . /app
 
+RUN composer self-update
 RUN composer install
 
 EXPOSE 8000
