@@ -30,8 +30,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 COPY composer.json composer.json
 
-RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader --no-suggest
-
+RUN COMPOSER_MEMORY_LIMIT=-1 composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader --no-suggest
 
 EXPOSE 80
 
