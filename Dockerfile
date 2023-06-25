@@ -31,13 +31,13 @@ COPY composer.json composer.lock ./
 RUN composer install --prefer-dist --no-scripts --no-autoloader
 
 # Copy existing application directory contents
-COPY . /var/www/html/
+COPY . .
 
 # Generate autoload files
 RUN composer dump-autoload --optimize
 
 # Copy Helper.php to the correct location
-RUN cp ./app/Helpers/Helper.php ./vendor/composer/../../app/Helpers/Helper.php
+# RUN cp ./app/Helpers/Helper.php ./vendor/composer/../../app/Helpers/Helper.php
 
 # Set write permissions for storage and bootstrap/cache
 USER root
