@@ -1,35 +1,38 @@
-# Use the official PHP image as the base image
-FROM php:7.4.29-cli
+# Use the official PHP 8.0 image as the base image
+FROM php:8.0
 
-# Set the working directory in the container
+# Set working directory
 WORKDIR /var/www/html
-
-# Copy the composer.json and composer.lock files to the container
-COPY composer.json composer.lock ./
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    libzip-dev \
+    git \
     zip \
-    unzip
+    unzip \
+    curl
 
 # Install PHP extensions
-RUN docker-php-ext-install zip pdo_mysql
+RUN docker-php-ext-install pdo_mysql
 
 # Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Install Composer dependencies
-RUN composer install --no-scripts --no-autoloader --no-interaction --prefer-dist
+# Copy composer.json and composer.lock
+COPY composer.json composer.lock ./
 
-# Copy the rest of the application code to the container
-COPY . .
+# Install project dependencies
+RUN composer install --prefer-dist --no-scripts --no-autoloader
 
-# Generate the autoloader
-RUN composer dump-autoload --optimize --classmap-authoritative
+# Copy existing application directory contents
+COPY . ./
 
-# Expose port 8000 (adjust as needed)
-EXPOSE 8000
+# Generate autoload files and optimize Composer autoloader
+RUN composer dump-autoload --optimize
 
-# Run the application
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+# Set write permissions for storage and bootstrap/cache
+RUN chown -R www-data:www-data storage bootstrap/cache
+RUN chmod -R 775 storage bootstrap/cache
+
+# Expose port 80 and start PHP built-in server
+EXPOSE 80
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=80"]
