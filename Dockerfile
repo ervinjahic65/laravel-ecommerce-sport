@@ -7,25 +7,26 @@ WORKDIR /var/www/html
 # Copy the composer.json and composer.lock files to the container
 COPY composer.json composer.lock ./
 
-# Install PHP extensions and dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
-    unzip \
-    && docker-php-ext-install zip \
-    && docker-php-ext-install pdo_mysql
+    unzip
+
+# Install PHP extensions
+RUN docker-php-ext-install zip pdo_mysql
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Install Composer dependencies
-RUN composer install --no-scripts --no-autoloader
+RUN composer install --no-scripts --no-autoloader --optimize-autoloader
 
 # Copy the rest of the application code to the container
-COPY . ./
+COPY . .
 
 # Generate the autoloader
-RUN composer dump-autoload --optimize
+RUN composer dump-autoload --optimize --classmap-authoritative
 
 # Expose port 8000 (adjust as needed)
 EXPOSE 8000
