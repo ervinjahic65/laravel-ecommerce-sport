@@ -29,6 +29,9 @@ COPY . ./
 # Generate autoload files
 RUN composer dump-autoload --optimize
 
+# Copy Helper.php to the correct location
+RUN cp ./app/Helpers/Helper.php ./vendor/composer/../../app/Helpers/Helper.php
+
 # Set write permissions for storage and bootstrap/cache
 RUN chown -R www-data:www-data storage bootstrap/cache
 RUN chmod -R 775 storage bootstrap/cache
