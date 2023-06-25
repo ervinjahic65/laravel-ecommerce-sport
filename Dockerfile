@@ -20,7 +20,7 @@ RUN docker-php-ext-install zip pdo_mysql
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Install Composer dependencies
-RUN composer install --no-scripts --optimize-autoloader
+RUN composer install --no-scripts
 
 # Copy the rest of the application code to the container
 COPY . .
