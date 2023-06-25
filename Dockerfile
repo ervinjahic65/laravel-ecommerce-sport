@@ -21,13 +21,13 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN rm -rf vendor
 
 # Install Composer dependencies
-RUN composer install --no-scripts --no-autoloader --ignore-platform-reqs
+RUN composer install --no-scripts --no-autoloader
 
 # Copy the rest of the application code to the container
 COPY . ./
 
 # Generate the autoloader
-RUN composer dump-autoload --optimize
+RUN composer dump-autoload --optimize --ignore-platform-reqs
 
 # Expose port 8000 (adjust as needed)
 EXPOSE 8000
