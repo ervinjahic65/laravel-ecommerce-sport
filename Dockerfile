@@ -44,10 +44,6 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 ENV APP_ENV=production
 ENV APP_KEY=Tzs/I6Ro9/A4U0KTCpgXKVTmjdWa7WPX/3hT7y8OPYY=
 ENV APP_DEBUG=false
-ENV MYSQL_DATABASE=laravel-ecommerce-sport
-ENV MYSQL_USER=mysql
-ENV MYSQL_PASSWORD=
-ENV MYSQL_ROOT_PASSWORD=
 
 # Generate application key
 RUN php artisan key:generate
