@@ -1,52 +1,56 @@
-# Use the official PHP 8.0 image as the base image
-FROM php:8.0
-
-# Set working directory
-WORKDIR /var/www/html
+# Use the official PHP 7.4 image as the base image
+FROM php:7.4-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
     zip \
-    unzip \
-    curl
+    unzip
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql
-
-# Create a new user and switch to it
-RUN useradd -ms /bin/bash dockeruser
-USER dockeruser
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 # Install Composer
-COPY --from=composer:2 /usr/bin/composer /home/dockeruser/.composer/vendor/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Set composer bin directory in the PATH
-ENV PATH="/home/dockeruser/.composer/vendor/bin:${PATH}"
+# Set working directory
+WORKDIR /var/www/html
 
-# Copy composer.json and composer.lock
+# Copy the composer.json and composer.lock files
 COPY composer.json composer.lock ./
 
 # Install project dependencies
 RUN composer install --prefer-dist --no-scripts --no-autoloader
 
-# Copy existing application directory contents
+# Copy the rest of the application code
 COPY . .
 
-# Generate autoload files
+# Generate optimized autoload files
 RUN composer dump-autoload --optimize
 
-# Copy Helper.php to the correct location
-COPY ./app/Helpers/Helper.php /var/www/html/vendor/composer/../../App/Helpers/Helper.php
+# Set file permissions
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Set write permissions for storage and bootstrap/cache
-USER root
-RUN chown -R www-data:www-data storage bootstrap/cache
-RUN chmod -R 775 storage bootstrap/cache
+# Set up environment variables
+ENV APP_ENV=production
+ENV APP_KEY=your_app_key
+ENV APP_DEBUG=false
 
-# Switch back to the non-root user
-USER dockeruser
+# Generate application key
+RUN php artisan key:generate
 
-# Expose port 80 and start PHP built-in server
-EXPOSE 80
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=80"]
+# Run migrations and seeders (if needed)
+# RUN php artisan migrate --seed
+
+# Expose port 9000 (or any other port you've configured in your PHP-FPM pool configuration)
+EXPOSE 9000
+
+# Start PHP-FPM server
+CMD ["php-fpm"]
