@@ -18,8 +18,6 @@ RUN apt-get update && apt-get install -y \
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN rm -rf vendor
-
 # Install Composer dependencies
 RUN composer install --no-scripts --no-autoloader
 
@@ -27,7 +25,7 @@ RUN composer install --no-scripts --no-autoloader
 COPY . ./
 
 # Generate the autoloader
-RUN composer dump-autoload --optimize --ignore-platform-reqs
+RUN composer dump-autoload --optimize
 
 # Expose port 8000 (adjust as needed)
 EXPOSE 8000
