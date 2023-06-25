@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install Composer dependencies
+RUN composer clear-cache
 RUN composer install --no-scripts --no-autoloader
 
 # Copy the rest of the application code to the container
