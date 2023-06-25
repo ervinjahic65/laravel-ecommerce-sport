@@ -37,7 +37,7 @@ COPY . .
 RUN composer dump-autoload --optimize
 
 # Copy Helper.php to the correct location
-# RUN cp ./app/Helpers/Helper.php ./vendor/composer/../../app/Helpers/Helper.php
+RUN cp ./app/Helpers/Helper.php ./vendor/composer/../../../app/Helpers/Helper.php
 
 # Set write permissions for storage and bootstrap/cache
 USER root
