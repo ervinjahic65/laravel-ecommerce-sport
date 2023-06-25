@@ -41,7 +41,7 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 
 # Set up environment variables
 ENV APP_ENV=production
-ENV APP_KEY=your_app_key
+ENV APP_KEY=Tzs/I6Ro9/A4U0KTCpgXKVTmjdWa7WPX/3hT7y8OPYY=
 ENV APP_DEBUG=false
 
 # Generate application key
