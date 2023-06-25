@@ -14,8 +14,15 @@ RUN apt-get update && apt-get install -y \
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql
 
+# Create a new user and switch to it
+RUN useradd -ms /bin/bash dockeruser
+USER dockeruser
+
 # Install Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2 /usr/bin/composer /home/dockeruser/.composer/vendor/bin/composer
+
+# Set composer bin directory in the PATH
+ENV PATH="/home/dockeruser/.composer/vendor/bin:${PATH}"
 
 # Copy composer.json and composer.lock
 COPY composer.json composer.lock ./
@@ -33,8 +40,12 @@ RUN composer dump-autoload --optimize
 RUN cp ./app/Helpers/Helper.php ./vendor/composer/../../app/Helpers/Helper.php
 
 # Set write permissions for storage and bootstrap/cache
+USER root
 RUN chown -R www-data:www-data storage bootstrap/cache
 RUN chmod -R 775 storage bootstrap/cache
+
+# Switch back to the non-root user
+USER dockeruser
 
 # Expose port 80 and start PHP built-in server
 EXPOSE 80
