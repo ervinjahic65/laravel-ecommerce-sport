@@ -31,7 +31,7 @@ COPY composer.json composer.lock ./
 RUN composer install --prefer-dist --no-scripts --no-autoloader
 
 # Copy existing application directory contents
-COPY . ./
+COPY . /var/www/html/
 
 # Generate autoload files
 RUN composer dump-autoload --optimize
