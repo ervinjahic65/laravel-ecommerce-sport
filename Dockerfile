@@ -1,5 +1,5 @@
 # Use the official PHP image as the base image
-FROM php:7.3-cli
+FROM php:7.4.29-cli
 
 # Set the working directory in the container
 WORKDIR /var/www/html
@@ -20,7 +20,7 @@ RUN docker-php-ext-install zip pdo_mysql
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Install Composer dependencies
-RUN composer install --no-scripts --no-autoloader --optimize-autoloader
+RUN composer install --no-scripts --no-autoloader --no-interaction
 
 # Copy the rest of the application code to the container
 COPY . .
