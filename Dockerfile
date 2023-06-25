@@ -26,8 +26,7 @@ RUN composer install --no-scripts --no-autoloader
 # Copy the rest of the application code to the container
 COPY . ./
 
-# Generate the autoloader
-RUN composer dump-autoload --optimize
+
 
 # Expose port 8000 (adjust as needed)
 EXPOSE 8000
