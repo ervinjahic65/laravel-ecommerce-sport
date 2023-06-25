@@ -1,5 +1,5 @@
 # Use the official PHP image as the base image
-FROM php:8.0-cli
+FROM php:7.4-cli
 
 # Set the working directory in the container
 WORKDIR /var/www/html
@@ -19,7 +19,6 @@ RUN apt-get update && apt-get install -y \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install Composer dependencies
-RUN composer clear-cache
 RUN composer install --no-scripts --no-autoloader
 
 # Copy the rest of the application code to the container
