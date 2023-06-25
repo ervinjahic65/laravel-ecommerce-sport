@@ -26,7 +26,7 @@ RUN composer install --no-scripts
 COPY . .
 
 # Generate the autoloader
-RUN composer dump-autoload --optimize --classmap-authoritative
+RUN composer dump-autoload
 
 # Expose port 8000 (adjust as needed)
 EXPOSE 8000
