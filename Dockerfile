@@ -20,13 +20,13 @@ RUN docker-php-ext-install zip pdo_mysql
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Install Composer dependencies
-RUN composer dump-autoload --optimize --classmap-authoritative
 RUN composer install --no-scripts --no-autoloader --no-interaction --prefer-dist
 
 # Copy the rest of the application code to the container
 COPY . .
 
 # Generate the autoloader
+RUN composer dump-autoload --optimize --classmap-authoritative
 
 # Expose port 8000 (adjust as needed)
 EXPOSE 8000
