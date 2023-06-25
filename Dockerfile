@@ -26,7 +26,7 @@ RUN composer install --prefer-dist --no-scripts --no-autoloader
 # Copy existing application directory contents
 COPY . ./
 
-# Generate autoload files and optimize Composer autoloader
+# Generate autoload files
 RUN composer dump-autoload --optimize
 
 # Set write permissions for storage and bootstrap/cache
