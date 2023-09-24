@@ -84,7 +84,7 @@
 
     <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
         <a class="navbar-brand ml-2 font-weight-bold" href="#">
-            <img class="hero-img" src="{{ url('images/hero-img.png') }}"/>
+            <img class="hero-img" src="{{ url('images/logo-hero.jpg') }}"/>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -154,7 +154,7 @@
 
     @if(!session('userid'))
     <div class="before-login" style="text-align: center;">
-        <img class="hero-img-main" src="{{ url('images/hero-img.png') }}"/>
+        <img class="hero-img-main" src="{{ url('images/logo-hero.jpg') }}"/>
     </div>
     @endif
 
